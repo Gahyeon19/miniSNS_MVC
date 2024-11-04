@@ -6,32 +6,51 @@ import com.example.mini_sns.postdomain.domain.PostDetailResponseDto;
 import com.example.mini_sns.postdomain.domain.PostUpdateRequestDto;
 import com.example.mini_sns.postdomain.service.PostService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Optional;
-
-@RestController
+@Controller
 @RequiredArgsConstructor
 @RequestMapping("/posts")
 public class PostController {
     private final PostService postService;
 
-    @PostMapping("/users/{useId}")
-    public PostDetailResponseDto createNewPostWithUser(@PathVariable("useId") String useId,
-                                                       @RequestBody PostCreateRequestDto postDto) {    // 유저의 게시글 저장
-        return postService.createPostWithUser(useId, postDto);
-    }
-
     @GetMapping
-    public List<Post> getPostList() {           // 모든 게시글 조회
-        return postService.getAllPosts();
+    public String viewAllPost(Model model) {          // 모든 게시글 조회
+        model.addAttribute("allPosts", postService.getAllPosts());
+        return "post/postAll";
     }
 
     @GetMapping("/{postId}")
-    public Optional<Post> getPostById(@PathVariable(name = "postId") int postId) {   // 해당 id의 게시글 조회
-        return postService.getPostById(postId);
+    public String viewPostDetail(@PathVariable(name = "postId") int postId, Model model) {   // 해당 id의 게시글 조회
+        model.addAttribute("post", postService.getPostById(postId).get());
+        return "post/postDetail";
     }
+
+    @GetMapping("/add")
+    public String addPost() {
+      return "post/postAdd";
+    }
+
+    @PostMapping("/add")
+    public String createNewPostWithUser(PostCreateRequestDto postDto) {    // 유저의 게시글 저장
+        postService.createPostWithUser("ccc", postDto);
+        return "redirect:/posts";
+    }
+
+    @GetMapping("/posts/update/{postId}")
+    public String updatePost(@PathVariable("postId") int postId, Model model) {
+        model.addAttribute("post", postService.getPostDetail(postId));
+        return "post/postUpdate";
+    }
+
+    @PostMapping("/posts/update/{postId}")                            // 유저의 게시글 수정
+    public String updatePostWithUser(@PathVariable("postId") int postId, PostUpdateRequestDto postDto) {
+        postService.updateBodyWithUser(postId, "ccc", postDto);
+        return "redirect:/posts/{postId}";
+    }
+
 
     @PutMapping("/{postId}")
     public Post updatePostBody(@PathVariable(name = "postId") int postId,
@@ -45,10 +64,4 @@ public class PostController {
         postService.removePost(postId, useId);
     }
 
-    @PatchMapping("/{postId}/users/{useId}")                            // 유저의 게시글 수정
-    public PostDetailResponseDto updatePostWithUser(@PathVariable("postId") int postId,
-                                                    @PathVariable("useId") String useId,
-                                                    @RequestBody PostUpdateRequestDto postDto) {
-        return postService.updateBodyWithUser(postId, useId, postDto);
-    }
 }

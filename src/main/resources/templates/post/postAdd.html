@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th ="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Post</title>
+</head>
+<body>
+<h1>게시판 글 쓰기</h1>
+<form th:action="@{/posts/add}" method="post">
+    <label for="title">제목</label>
+    <input type="text" id="title" name="title" placeholder="제목을 입력하세요">
+    <label for="body">내용</label>
+    <textarea id="body" name="body" placeholder="내용을 입력하세요"></textarea>
+    <input type="submit" value="저장">
+
+</form>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th ="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Post Detail</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>글번호</th>
+            <td th:text="${post.postId}"></td>
+        </tr>
+        <tr>
+            <th>제목</th>
+            <td th:text="${post.title}"></td>
+        </tr>
+        <tr>
+            <th>내용</th>
+            <td th:text="${post.body}"></td>
+        </tr>
+        <tr>
+            <th>좋아요</th>
+            <td th:text="${post.likes}"></td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th ="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Post</title>
+</head>
+<body>
+<h1>게시판 글 수정</h1>
+<form th:action="@{/posts/update/{postId}(postId=${post.postId})}" method="post">
+    <input type="text" name="postId" th:value="${post.postId}">
+
+    <label for="title">제목</label>
+    <input type="text" id="title" name="title" th:value="${post.title}">
+    <label for="body">내용</label>
+    <textarea id="body" name="body" th:value="${post.body}"></textarea>
+    <input type="text" name="useId" th:value="${post.useId}" hidden>
+    <input type="submit" value="수정">
+
+</form>
+</body>
+</html>

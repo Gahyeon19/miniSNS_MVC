@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th ="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Post List</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>글번호</th>
+        <th>제목</th>
+        <th>좋아요</th>
+    </tr>
+    <tr th:each="post : ${allPosts}">
+        <td ><a th:href="@{/posts/{postId}(postId=${post.postId})}" th:text="${post.postId}"></a></td>
+        <td ><a th:href="@{/posts/{postId}(postId=${post.postId})}" th:text="${post.title}"></a></td>
+        <td th:text="${post.likes}"></td>
+    </tr>
+</table>
+</body>
+</html>

@@ -1,12 +1,10 @@
 package com.example.mini_sns.postdomain.service;
 
-import com.example.mini_sns.postdomain.domain.Post;
-import com.example.mini_sns.postdomain.domain.PostCreateRequestDto;
-import com.example.mini_sns.postdomain.domain.PostDetailResponseDto;
-import com.example.mini_sns.postdomain.domain.PostUpdateRequestDto;
+import com.example.mini_sns.postdomain.domain.*;
 import com.example.mini_sns.postdomain.repository.PostRepository;
 import com.example.mini_sns.userdomain.domain.User;
 import com.example.mini_sns.userdomain.repository.UserRepository;
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

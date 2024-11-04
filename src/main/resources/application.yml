@@ -20,6 +20,6 @@ spring:
         show_sql: true
         hbm2ddl:
           auto: update
-#logging:
-#  level:
-#
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
