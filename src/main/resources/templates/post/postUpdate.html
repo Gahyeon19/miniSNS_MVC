@@ -6,13 +6,13 @@
 </head>
 <body>
 <h1>게시판 글 수정</h1>
-<form th:action="@{/posts/update/{postId}(postId=${post.postId})}" method="post">
-    <input type="text" name="postId" th:value="${post.postId}">
-
+<form th:action="@{/posts/update/{postId}(postId=${post.postId})}" method="post" th:object="${post}">
+    <input type="text" th:field="*{postId}" readonly>
+<!--    for="title"에 그어지는 빨간줄은 id가 주어지지 않아서 발생. 무시해도 됨. (th:field에 id, name, value가 포함되어있기 때문에)-->
     <label for="title">제목</label>
-    <input type="text" id="title" name="title" th:value="${post.title}">
+    <input type="text" th:field="*{title}" readonly>
     <label for="body">내용</label>
-    <textarea id="body" name="body" th:value="${post.body}"></textarea>
+    <input th:field="*{body}">
     <input type="text" name="useId" th:value="${post.useId}" hidden>
     <input type="submit" value="수정">
 

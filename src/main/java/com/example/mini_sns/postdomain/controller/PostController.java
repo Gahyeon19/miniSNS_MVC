@@ -29,8 +29,9 @@ public class PostController {
     }
 
     @GetMapping("/add")
-    public String addPost() {
-      return "post/postAdd";
+    public String addPost(Model model) {
+        model.addAttribute("post", new Post());
+        return "post/postAdd";
     }
 
     @PostMapping("/add")
@@ -39,13 +40,13 @@ public class PostController {
         return "redirect:/posts";
     }
 
-    @GetMapping("/posts/update/{postId}")
+    @GetMapping("/update/{postId}")
     public String updatePost(@PathVariable("postId") int postId, Model model) {
         model.addAttribute("post", postService.getPostDetail(postId));
         return "post/postUpdate";
     }
 
-    @PostMapping("/posts/update/{postId}")                            // 유저의 게시글 수정
+    @PostMapping("/update/{postId}")                            // 유저의 게시글 수정
     public String updatePostWithUser(@PathVariable("postId") int postId, PostUpdateRequestDto postDto) {
         postService.updateBodyWithUser(postId, "ccc", postDto);
         return "redirect:/posts/{postId}";
