@@ -13,5 +13,6 @@
         <textarea id="body" th:field="*{body}" placeholder="내용을 입력하세요"></textarea>
         <input type="submit" value="저장">
     </form>
+    <button th:onclick="|location.href='@{/posts}'|">목록으로</button>
 </body>
 </html>

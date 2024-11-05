@@ -23,5 +23,7 @@
             <td th:text="${post.likes}"></td>
         </tr>
     </table>
+<button th:onclick="|location.href='@{/posts/update/{postId}(postId=${post.postId})}'|">수정하기</button>
+<button th:onclick="|location.href='@{/posts}'|">목록으로</button>
 </body>
 </html>

@@ -41,34 +41,34 @@ dependencies {
     //querydsl 추가
     //쿼리dsl dependency 추가
     // query dsl 버전 명시해야 jakarta사용 (javax X)
-    implementation 'com.querydsl:querydsl-apt:5.0.0'
-    implementation 'com.querydsl:querydsl-jpa:5.0.0:jakarta'
-    implementation 'com.querydsl:querydsl-core:5.0.0'
-
-    annotationProcessor "com.querydsl:querydsl-apt:${dependencyManagement.importedProperties['querydsl.version']}:jakarta"
-
-    annotationProcessor "jakarta.annotation:jakarta.annotation-api"
-    annotationProcessor "jakarta.persistence:jakarta.persistence-api"
+//    implementation 'com.querydsl:querydsl-apt:5.0.0'
+//    implementation 'com.querydsl:querydsl-jpa:5.0.0:jakarta'
+//    implementation 'com.querydsl:querydsl-core:5.0.0'
+//
+//    annotationProcessor "com.querydsl:querydsl-apt:${dependencyManagement.importedProperties['querydsl.version']}:jakarta"
+//
+//    annotationProcessor "jakarta.annotation:jakarta.annotation-api"
+//    annotationProcessor "jakarta.persistence:jakarta.persistence-api"
 }
-
-// 쿼리DSL추가 빌드
-def querydslDir = "$buildDir/generated/querydsl"
-querydsl { //쿼리DSL추가 빌드
-    jpa = true
-    querydslSourcesDir = querydslDir
-}
-sourceSets { //쿼리DSL추가 빌드
-    main.java.srcDir querydslDir
-}
-configurations { //쿼리DSL추가 빌드
-    compileOnly {
-        extendsFrom annotationProcessor
-    }
-    querydsl.extendsFrom compileClasspath
-}
-compileQuerydsl { //쿼리DSL추가 빌드
-    options.annotationProcessorPath = configurations.querydsl
-}
+//
+//// 쿼리DSL추가 빌드
+//def querydslDir = "$buildDir/generated/querydsl"
+//querydsl { //쿼리DSL추가 빌드
+//    jpa = true
+//    querydslSourcesDir = querydslDir
+//}
+//sourceSets { //쿼리DSL추가 빌드
+//    main.java.srcDir querydslDir
+//}
+//configurations { //쿼리DSL추가 빌드
+//    compileOnly {
+//        extendsFrom annotationProcessor
+//    }
+//    querydsl.extendsFrom compileClasspath
+//}
+//compileQuerydsl { //쿼리DSL추가 빌드
+//    options.annotationProcessorPath = configurations.querydsl
+//}
 
 tasks.named('test') {
     useJUnitPlatform()
