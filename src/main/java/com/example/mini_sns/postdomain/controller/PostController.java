@@ -52,6 +52,18 @@ public class PostController {
         return "redirect:/posts/{postId}";
     }
 
+//    @RequestMapping("/delete/{postId}")        // getmapping + postmapping    // 유저의 게시글 삭제
+//    public String deletePostWithUser(@PathVariable(name = "postId") int postId) {
+//        postService.removePost(postId, "ccc");
+//        return "redirect:/posts";
+//    }
+
+    @PostMapping("/delete/{postId}")        // getmapping + postmapping    // 유저의 게시글 삭제
+    public String deletePostWithUser(@PathVariable(name = "postId") int postId) {
+        postService.removePost(postId, "ccc");
+        return "redirect:/posts";
+    }
+
 
     @PutMapping("/{postId}")
     public Post updatePostBody(@PathVariable(name = "postId") int postId,
@@ -59,10 +71,5 @@ public class PostController {
         return postService.updatePost(post);
     }
 
-    @DeleteMapping("/{postId}")
-    public void deletePostWithUser(@PathVariable(name = "postId") int postId,
-                                   @PathVariable(name = "useId") String useId) {    // 유저의 게시글 삭제
-        postService.removePost(postId, useId);
-    }
 
 }

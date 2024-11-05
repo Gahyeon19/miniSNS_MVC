@@ -10,11 +10,20 @@
             <th>글번호</th>
             <th>제목</th>
             <th>좋아요</th>
+            <th>stat</th>
         </tr>
-        <tr th:each="post : ${allPosts}">
-            <td ><a th:href="@{/posts/{postId}(postId=${post.postId})}" th:text="${post.postId}"></a></td>
-            <td ><a th:href="@{/posts/{postId}(postId=${post.postId})}" th:text="${post.title}"></a></td>
+        <tr th:each="post, stat : ${allPosts}">
+            <td >
+                <a th:href="@{/posts/{postId}(postId=${post.postId})}" th:text="${post.postId}"></a>
+            </td>
+            <td >
+                <a th:href="@{/posts/{postId}(postId=${post.postId})}" th:text="${post.title}"></a>
+            </td>
             <td th:text="${post.likes}"></td>
+            <td th:text="${stat.count}"></td>
+            <form th:action="@{/posts/delete/{postId}(postId=${post.postId})}" method="post">
+                <input type="submit" value="삭제">
+            </form>
         </tr>
     </table>
     <button th:onclick="|location.href='@{/posts/add}'|">등록하기</button>
