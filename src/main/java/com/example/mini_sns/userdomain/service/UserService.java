@@ -17,7 +17,7 @@ public class UserService {
     private final UserRepository userRepository;
 
     @Transactional(readOnly = true)
-    public List<User> getAllusers() {       // 모든 유저 조회
+    public List<User> getAllUsers() {       // 모든 유저 조회
         return userRepository.findAll();
     }
 
@@ -40,14 +40,14 @@ public class UserService {
     }
 
     //password 만 수정
-    public User updateUserPassword(User user) {
+    public void updateUserPassword(User user) {
         log.info(user.toString());
         User oldUser = getOneUser(user.getUseId());
         if (oldUser != null && !oldUser.getPassword().equals(user.getPassword()) && !user.getPassword().isBlank()) {
+            log.info(oldUser.getUserName());
+            log.info(user.getUserName());
             oldUser.setPassword(user.getPassword());
             userRepository.save(oldUser);
-            log.info(oldUser.toString());
         }
-        return oldUser;
     }
 }

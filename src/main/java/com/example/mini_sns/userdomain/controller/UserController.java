@@ -18,7 +18,7 @@ public class UserController {
     @GetMapping
     public List<User> getUsers() {
         //세션 정보를 얻어온다. ==> 로그인된 상태인지 확인 ==> 사용자가 admin일 때만
-        return userService.getAllusers();
+        return userService.getAllUsers();
     }
 
     ////////
@@ -49,11 +49,11 @@ public class UserController {
     }
 
     @PutMapping("/{useId}")
-    public User updateUser(@PathVariable("useId") String useId, @RequestBody User user) {
+    public void updateUser(@PathVariable("useId") String useId, @RequestBody User user) {
         //세션 정보를 얻어온다. ==> 로그인된 상태인지 확인 ==> 본인이 맞는지 확인해서 본인인 경우에만 수정 가능
 
 
         user.setUseId(useId);
-        return userService.updateUserPassword(user);
+        userService.updateUserPassword(user);
     }
 }
