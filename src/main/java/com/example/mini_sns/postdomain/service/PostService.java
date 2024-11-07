@@ -4,7 +4,7 @@ import com.example.mini_sns.postdomain.domain.*;
 import com.example.mini_sns.postdomain.repository.PostRepository;
 import com.example.mini_sns.userdomain.domain.User;
 import com.example.mini_sns.userdomain.repository.UserRepository;
-import com.querydsl.jpa.impl.JPAQueryFactory;
+//import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -60,6 +60,12 @@ public class PostService {
                 post.getWriter().getUseId());
 
         return retPost;
+    }
+
+    public List<Post> viewAllPostWithUser(String useId) {
+        User user = userRepository.findByUseId(useId);
+        //해당 유저의 게시글 가져오기
+        return postRepository.findAll();
     }
 
     public PostDetailResponseDto createPostWithUser(String useId, PostCreateRequestDto postDto) {
