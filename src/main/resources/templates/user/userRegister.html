@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+    <form th:action="@{/users/register}" method="post">
+        <p>이름<input type="text" th:value="${userName}" th:name="userName" placeholder="이름을 입력하세요"></p>
+        <p>아이디<input type="text" th:value="${userId}" th:name="userId" placeholder="아이디를 입력하세요"></p>
+        <p>암호<input type="password" th:value="${password}" th:name="password" placeholder="암호를 입력하세요"></p>
+        <p><input type="submit" value="회원가입"></p>
+    </form>
+</body>
+</html>

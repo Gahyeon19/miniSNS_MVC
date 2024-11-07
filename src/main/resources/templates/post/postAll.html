@@ -5,6 +5,8 @@
     <title>Post List</title>
 </head>
 <body>
+    <h1>📜게시글 목록📜</h1>
+    <hr>
     <table>
         <tr>
             <th>글번호</th>
@@ -21,9 +23,11 @@
             </td>
             <td th:text="${post.likes}"></td>
             <td th:text="${stat.count}"></td>
-            <form th:action="@{/posts/delete/{postId}(postId=${post.postId})}" method="post">
-                <input type="submit" value="삭제">
-            </form>
+            <td>
+                <form th:action="@{/posts/delete/{postId}(postId=${post.postId})}" method="post">
+                    <input type="submit" value="삭제">
+                </form>
+            </td>
         </tr>
     </table>
     <button th:onclick="|location.href='@{/posts/add}'|">등록하기</button>

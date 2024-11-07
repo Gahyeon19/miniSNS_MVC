@@ -5,7 +5,10 @@
     <title>Add Post</title>
 </head>
 <body>
-<h1>게시판 글 쓰기</h1>
+    <h1>📝게시판 글 쓰기📝</h1>
+    <hr>
+<!--    <a th:href="">로그아웃</a>-->
+
     <form th:action="@{/posts/add}" method="post" th:object="${post}">
         <label for="title">제목</label>
         <input type="text" id="title" th:field="*{title}" placeholder="제목을 입력하세요">
